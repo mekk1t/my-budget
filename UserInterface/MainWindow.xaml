@@ -21,10 +21,10 @@
     <StackPanel>
         <TabControl>
             <TabItem Header="Бюджет">
-                <StackPanel>
-                    <Grid>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="01.01.2001" />
+                    <Grid xmlns:d="clr-namespace:DomainModels;assembly=DomainModels">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -35,32 +35,36 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Траты</Label>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">Доходы</Label>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="3" Grid.Column="0">Цель</Label>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="3" Grid.Column="1">Сумма</Label>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="3" Grid.Column="3">Источник</Label>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="3" Grid.Column="4">Сумма</Label>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="4" Grid.Column="0">Текст</TextBlock>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="4" Grid.Column="1">Текст</TextBlock>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="4" Grid.Column="3">Текст</TextBlock>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="4" Grid.Column="4">Текст</TextBlock>
-                        <Border Grid.Row="5" Grid.ColumnSpan="5" BorderThickness="1" BorderBrush="Black"></Border>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="5" Grid.Column="0">Всего</Label>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="5" Grid.Column="1">500 Р</TextBlock>
-                        <Label Style="{StaticResource LabelHeader}" Grid.Row="5" Grid.Column="3">Всего</Label>
-                        <TextBlock Background="AntiqueWhite" Grid.Row="5" Grid.Column="4">500 Р</TextBlock>
+                        <Label Style="{StaticResource LabelHeader}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Траты</Label>
+                        <Label Style="{StaticResource LabelHeader}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">Доходы</Label>
+                        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Цель" Binding="{Binding Target}"/>
+                                <DataGridTextColumn Width="*" Header="Сумма, руб." Binding="{Binding Amount}"/>
+                            </DataGrid.Columns>
+                            <d:Expense Target="Ипотека" Amount="23000" />
+                            <d:Expense Target="Интернет" Amount="500" />
+                        </DataGrid>
+                        <DataGrid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Источник" Binding="{Binding Source}"/>
+                                <DataGridTextColumn Width="*" Header="Сумма, руб." Binding="{Binding Amount}"/>
+                            </DataGrid.Columns>
+                            <d:Income Source="Зарплата" Amount="80000" />
+                            <d:Income Source="Начисления" Amount="11000" />
+                        </DataGrid>
+                        <Label Grid.Row="2" Grid.Column="0">Всего</Label>
+                        <TextBlock Grid.Row="2" Grid.Column="1" />
+                        <Label Grid.Row="2" Grid.Column="2">Всего</Label>
+                        <TextBlock Grid.Row="2" Grid.Column="3" />
+                        <Label Grid.Row="3" Grid.Column="1">В копилку: </Label>
+                        <TextBlock Grid.Row="2" Grid.Column="2" />
                     </Grid>
-                    <Label HorizontalAlignment="Center">В копилку: 1000 Р</Label>
-                    <Button Width="100" Padding="0 10" Margin="20">ОК</Button>
+                    <Button Margin="20" Width="60" Height="30">ОК</Button>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Копилка">
-                <TextBlock>Скоро будет и тут</TextBlock>
             </TabItem>
         </TabControl>
     </StackPanel>
