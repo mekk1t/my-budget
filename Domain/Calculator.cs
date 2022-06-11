@@ -13,7 +13,7 @@
         }
 
         public UntouchableMoney CalculateUntouchableMoney() =>
-            new(Convert.ToInt32(Math.Round(_incomes.Sum(i => i.Amount) / UNTOUCHABLE_MONEY_COEFFICIENT)));
+            new(Convert.ToInt32(Math.Round(_incomes.Sum(i => i.Amount) * UNTOUCHABLE_MONEY_COEFFICIENT)));
 
         public FreeMoney CalculateFreeMoney() =>
             new()
