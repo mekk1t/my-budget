@@ -1,4 +1,6 @@
-﻿namespace KitBudget.Entities
+﻿using KitBudget.Entities.Enums;
+
+namespace KitBudget.Entities
 {
     public class Income
     {

@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Entities
+﻿namespace KitBudget.Entities.Enums
 {
     public enum Bank
     {
