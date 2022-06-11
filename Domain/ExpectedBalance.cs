@@ -4,8 +4,8 @@
     {
         private readonly Calculator _calculator;
 
-        public int Amount => _calculator.CalculateFreeMoney().Amount;
         public DateOnly CreatedAt { get; }
+        public int Amount { get => _calculator.CalculateFreeMoney().Amount; }
 
         public ExpectedBalance(CurrentTime currentTime, Calculator calculator)
         {
