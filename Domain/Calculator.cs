@@ -18,7 +18,12 @@
         public FreeMoney CalculateFreeMoney() =>
             new()
             {
-                Amount = _incomes.Sum(i => i.Amount) - _expenses.Sum(e => e.Amount) - CalculateUntouchableMoney().Amount
+                Amount =
+                    _incomes.Sum(i => i.Amount) -
+                    _expenses
+                        .Where(e => e.IsNecessary)
+                        .Sum(e => e.Amount) -
+                    CalculateUntouchableMoney().Amount
             };
     }
 }
