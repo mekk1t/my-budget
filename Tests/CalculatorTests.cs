@@ -17,5 +17,17 @@ namespace KitBudget.Tests
 
             result.Should().Be(200);
         }
+
+        [Fact]
+        public void Расчет_свободных_денег()
+        {
+            var incomes = new[] { new Income(500), new Income(500), new Income(500) };
+            var expenses = new[] { new Expense(500, "Пирожки"), new Expense(500, "ЖКХ") };
+            var sut = new Calculator(incomes, expenses);
+
+            int result = sut.CalculateFreeMoney().Amount;
+
+            result.Should().Be(350);
+        }
     }
 }
