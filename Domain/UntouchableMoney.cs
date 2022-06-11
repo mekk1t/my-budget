@@ -1,14 +1,19 @@
-﻿namespace KitBudget.Entities
+﻿using KitBudget.Entities.Abstractions;
+
+namespace KitBudget.Entities
 {
-    public class UntouchableMoney
+    public class UntouchableMoney : ValueObject
     {
-        public int CurrentBalance { get; }
         public int Amount { get; }
 
-        public UntouchableMoney(int currentBalance, int amount)
+        public UntouchableMoney(int amount)
         {
-            CurrentBalance = currentBalance;
             Amount = amount;
+        }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Amount;
         }
     }
 }
