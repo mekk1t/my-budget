@@ -7,5 +7,7 @@
         public Bank Bank { get; set; }
         public DateTime? EndsAt { get; set; }
         public int Amount { get; set; }
+        public bool IsNecessary { get; set; }
+        public bool IsDesired { get; set; }
     }
 }
