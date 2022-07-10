@@ -5,8 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <AssemblyName>KitBudget.UI</AssemblyName>
-    <RootNamespace>KitBudget.UI</RootNamespace>
+    <AssemblyName>Kit.Ledger.UI</AssemblyName>
+    <RootNamespace>Kit.Ledger.UI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
