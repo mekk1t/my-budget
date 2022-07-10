@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Entities.Enums
+﻿namespace KitBudget.Domain.Enums
 {
     public enum Person
     {

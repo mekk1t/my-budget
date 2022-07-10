@@ -1,6 +1,6 @@
-﻿using KitBudget.Entities.Abstractions;
+﻿using KitBudget.Domain.Abstractions;
 
-namespace KitBudget.Entities
+namespace KitBudget.Domain
 {
     public class UntouchableMoney : ValueObject
     {

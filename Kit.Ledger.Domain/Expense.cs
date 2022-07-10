@@ -1,7 +1,7 @@
-﻿using KitBudget.Entities.Abstractions;
-using KitBudget.Entities.Enums;
+﻿using KitBudget.Domain.Abstractions;
+using KitBudget.Domain.Enums;
 
-namespace KitBudget.Entities
+namespace KitBudget.Domain
 {
     public class Expense : Entity
     {

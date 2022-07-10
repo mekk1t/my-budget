@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Kit.Ledger.Domain\Kit.Ledger.Domain.csproj" />
   </ItemGroup>
 
 </Project>

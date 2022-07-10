@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using KitBudget.Entities;
+using KitBudget.Domain;
 using Xunit;
 
 namespace KitBudget.Tests

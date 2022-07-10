@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Entities.Abstractions
+﻿namespace KitBudget.Domain.Abstractions
 {
     public abstract class ValueObject
     {

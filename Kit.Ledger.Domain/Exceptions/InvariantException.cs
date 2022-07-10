@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Entities.Exceptions
+﻿namespace KitBudget.Domain.Exceptions
 {
     public class InvariantException : Exception
     {

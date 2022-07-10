@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Entities
+﻿namespace KitBudget.Domain
 {
     public class Calculator
     {
