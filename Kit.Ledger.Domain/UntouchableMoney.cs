@@ -1,6 +1,6 @@
-﻿using KitBudget.Domain.Abstractions;
+﻿using Kit.Ledger.Domain.Abstractions;
 
-namespace KitBudget.Domain
+namespace Kit.Ledger.Domain
 {
     public class UntouchableMoney : ValueObject
     {

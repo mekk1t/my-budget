@@ -1,6 +1,6 @@
-﻿using KitBudget.Domain.Exceptions;
+﻿using Kit.Ledger.Domain.Exceptions;
 
-namespace KitBudget.Domain.Abstractions
+namespace Kit.Ledger.Domain.Abstractions
 {
     /// <summary>
     /// Базовый класс сущности предметной области.

@@ -1,7 +1,7 @@
-﻿using KitBudget.Domain.Abstractions;
-using KitBudget.Domain.Enums;
+﻿using Kit.Ledger.Domain.Abstractions;
+using Kit.Ledger.Domain.Enums;
 
-namespace KitBudget.Domain
+namespace Kit.Ledger.Domain
 {
     public class Income : Entity
     {

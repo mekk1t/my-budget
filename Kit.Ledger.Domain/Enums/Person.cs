@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Domain.Enums
+﻿namespace Kit.Ledger.Domain.Enums
 {
     public enum Person
     {

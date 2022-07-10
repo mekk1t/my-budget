@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using KitBudget.Domain;
+using Kit.Ledger.Domain;
 using Xunit;
 
-namespace KitBudget.Tests
+namespace Kit.Ledger.Tests
 {
     public class CalculatorTests
     {

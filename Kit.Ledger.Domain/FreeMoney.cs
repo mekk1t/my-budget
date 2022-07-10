@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KitBudget.Domain
+namespace Kit.Ledger.Domain
 {
     public class FreeMoney
     {

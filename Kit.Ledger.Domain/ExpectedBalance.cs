@@ -1,4 +1,4 @@
-﻿namespace KitBudget.Domain
+﻿namespace Kit.Ledger.Domain
 {
     public class ExpectedBalance
     {
