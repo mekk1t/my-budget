@@ -3,6 +3,12 @@
     public static class Calculator
     {
         private const decimal PERCENTAGE = 0.1m;
+        private static readonly IReadOnlyList<ExpenseType> SBERBANK_EXPENSE_TYPES = new List<ExpenseType>
+        {
+            ExpenseType.Mortgage,
+            ExpenseType.Parking,
+            ExpenseType.VKA
+        };
 
         public static decimal UntouchableMoneyDeposit(Revision revision)
         {
@@ -14,6 +20,7 @@
             return
                 previousMonthBudget.FirstRevision.UntouchableMoneyBalance -
                 previousMonthBudget.SecondRevision.UntouchableMoneyBalance +
+                firstRevision.UntouchableMoneyBalance +
                 UntouchableMoneyDeposit(firstRevision);
         }
 
@@ -26,7 +33,9 @@
 
         public static decimal FirstRevisionSberbankTransferAmount(Revision firstRevision)
         {
-            return firstRevision.Expenses.Sum();
+            return firstRevision.Expenses
+                .Where(e => SBERBANK_EXPENSE_TYPES.Contains(e.SpentOn))
+                .Sum(e => e.Amount);
         }
 
         /// <summary>
@@ -42,7 +51,7 @@
                     (1 - PERCENTAGE)
                 ) -
                 (
-                    budget.FirstRevision.Expenses.Sum() + budget.SecondRevision.Expenses.Sum()
+                    budget.FirstRevision.Expenses.Select(e => e.Amount).Sum() + budget.SecondRevision.Expenses.Select(e => e.Amount).Sum()
                 );
         }
     }
