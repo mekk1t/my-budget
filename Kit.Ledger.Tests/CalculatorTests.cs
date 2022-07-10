@@ -1,5 +1,10 @@
 ﻿using FluentAssertions;
-using Kit.Ledger.Domain;
+using Kit.Ledger.Domain.New;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Kit.Ledger.Tests
@@ -7,53 +12,27 @@ namespace Kit.Ledger.Tests
     public class CalculatorTests
     {
         [Fact]
-        public void Со_всех_доходов_в_нз_откладывается_10процентов()
+        public void Заполнение_первой_ревизии()
         {
-            var incomes = new[] { new Income(150_000), new Income(12_000) };
-            var expenses = new[]
+            Revision firstRevision = new Revision
             {
-                new Expense(23021, "Ипотека"),
-                new Expense(5000, "ЖКХ"),
-                new Expense(23350, "Паркинг: рассрочка"),
-                new Expense(9000, "ВКА"),// надо делить траты на прогнозируемые и фактические. Либо на этой стадии насрать
-                new Expense(350, "Связь: Теле2"),
-                new Expense(350, "Связь: МТС"),
-                new Expense(550, "Интернет"),
-                new Expense(4000, "Танцы"),
-                new Expense(30000, "Продукты"),
-                new Expense(14000, "Садик"),
-                new Expense(6555, "Штрафные"),
+                CreatedAt = DateTime.UtcNow,
+                UntouchableMoneyBalance = 32242.8m,
+                PocketMoneyBalance = 22057,
+                Incomes = new List<decimal>
+                {
+                    150_000,
+                    12_000
+                },
+                Expenses = new List<decimal>
+                {
+                    23021, 5000, 9000, 350, 350, 850, 200, 4000
+                }
             };
-            var sut = new Calculator(incomes, expenses);
 
-            int result = sut.CalculateUntouchableMoney().Amount;
+            decimal sberbankTransferAmount = Calculator.FirstRevisionSberbankTransferAmount(firstRevision);
 
-            result.Should().Be(16200);
-        }
-
-        [Fact]
-        public void Расчет_свободных_денег()
-        {
-            var incomes = new[] { new Income(150_000), new Income(12_000) };
-            var expenses = new[]
-            {
-                new Expense(23021, "Ипотека"),
-                new Expense(5000, "ЖКХ"),
-                new Expense(23350, "Паркинг: рассрочка"),
-                new Expense(9000, "ВКА"),// надо делить траты на прогнозируемые и фактические. Либо на этой стадии насрать
-                new Expense(350, "Связь: Теле2"),
-                new Expense(350, "Связь: МТС"),
-                new Expense(550, "Интернет"),
-                new Expense(4000, "Танцы"),
-                new Expense(30000, "Продукты"),
-                new Expense(14000, "Садик"),
-                new Expense(6555, "Штрафные"),
-            };
-            var sut = new Calculator(incomes, expenses);
-
-            int result = sut.CalculateFreeMoney().Amount;
-
-            result.Should().Be(29624);
+            sberbankTransferAmount.Should().Be(32021);
         }
     }
 }
