@@ -9,6 +9,23 @@
             ExpenseType.VKA
         };
 
+        /// <summary>
+        /// Получает баланс счёта "НЗ" на начало месяца.
+        /// </summary>
+        /// <param name="previousMonthBudget">Бюджет за предыдущий месяц.</param>
+        /// <returns>
+        /// Значение баланса на счету "НЗ", которое должно быть на начало месяца.
+        /// </returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static decimal GetUntouchableMoneyBalance(Budget previousMonthBudget, Revision revision)
+        {
+            decimal? currentBalance = previousMonthBudget.GetUntouchableMoneyBalance();
+            if (currentBalance == null)
+                throw new ArgumentException("В бюджете не заполнена вторая итерация");
+
+            return currentBalance.Value + revision.UntouchableMoneyDeposit();
+        }
+
         public static decimal PocketMoneyBalanceAtTheStartOfTheMonth(Budget previousMonthBudget)
         {
             return
