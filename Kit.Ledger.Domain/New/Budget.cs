@@ -19,6 +19,15 @@
         public Revision? SecondRevision { get; }
 
         /// <summary>
+        /// Баланс счёта "НЗ" на начало месяца. Рассчитывается при составлении первой итерации бюджета.
+        /// </summary>
+        public decimal UntouchableMoneyAtTheStartOfTheMonth { get; }
+        /// <summary>
+        /// Баланс счёта "НЗ" на конец месяца. Отсутствует в первой итерации бюджета, заполняется во второй.
+        /// </summary>
+        public decimal? UntouchableMoneyAtTheEndOfTheMonth { get; }
+
+        /// <summary>
         /// Начало ведения месячного бюджета.
         /// </summary>
         public DateTime BeginsAt => FirstRevision.CreatedAt;
@@ -32,10 +41,12 @@
         /// </summary>
         /// <param name="month">Месяц, за который ведётся бюджет.</param>
         /// <param name="firstRevision">Первая ревизия с фиксированными тратами.</param>
-        public Budget(Month month, Revision firstRevision)
+        public Budget(Month month, Revision firstRevision, decimal untouchableMoneyAtTheStartOfTheMonth)
         {
             Month = month;
             FirstRevision = firstRevision;
+            UntouchableMoneyAtTheStartOfTheMonth = untouchableMoneyAtTheStartOfTheMonth;
+            UntouchableMoneyAtTheEndOfTheMonth = null;
         }
 
         /// <summary>
@@ -43,11 +54,13 @@
         /// </summary>
         /// <param name="firstIteration">Первая итерация бюджета.</param>
         /// <param name="secondRevision">Вторая ревизия с динамическими тратами.</param>
-        public Budget(Budget firstIteration, Revision secondRevision)
+        /// <param name="untouchableMoneyBalance">Баланс счёта "НЗ" на конец месяца.</param>
+        public Budget(Budget firstIteration, Revision secondRevision, decimal untouchableMoneyBalance)
         {
             Month = firstIteration.Month;
             FirstRevision = firstIteration.FirstRevision;
             SecondRevision = secondRevision;
+            UntouchableMoneyAtTheEndOfTheMonth = untouchableMoneyBalance;
         }
 
         /// <summary>
@@ -63,8 +76,8 @@
                 return null;
 
             return
-                FirstRevision.UntouchableMoneyBalance -
-                (FirstRevision.UntouchableMoneyBalance - SecondRevision.UntouchableMoneyBalance);
+                UntouchableMoneyAtTheStartOfTheMonth -
+                (UntouchableMoneyAtTheStartOfTheMonth - UntouchableMoneyAtTheEndOfTheMonth);
         }
     }
 }
