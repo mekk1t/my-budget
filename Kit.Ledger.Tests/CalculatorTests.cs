@@ -8,6 +8,31 @@ namespace Kit.Ledger.Tests
 {
     public class CalculatorTests
     {
+        private static List<Expense> JuneDynamicExpenses() => new List<Expense>()
+        {
+            new Expense(8635, ExpenseType.Food),
+            new Expense(3679, ExpenseType.Samokat, Person.Nikita),
+            new Expense(4000, ExpenseType.Psychologist, Person.Tonya),
+            new Expense(6000, ExpenseType.Dentist, Person.Nikita),
+            new Expense(400, ExpenseType.TransportSocial, Person.Nikita),
+            new Expense(709, ExpenseType.TransportTaxi, Person.Nikita),
+            new Expense(2287, ExpenseType.FoodOnTheRun),
+            new Expense(7106, ExpenseType.OZON, Person.Nikita),
+            new Expense(6887, ExpenseType.MihailikKitchen, Person.Nikita)
+        };
+
+        private static List<Expense> JuneFixedExpenses() => new List<Expense>()
+        {
+            new Expense(23021, ExpenseType.Mortgage, Person.Nikita),
+            new Expense(5000, ExpenseType.HousingServices, Person.Tonya),
+            new Expense(9000, ExpenseType.VKA, Person.Nikita),
+            new Expense(350, ExpenseType.PhoneNikita, Person.Nikita),
+            new Expense(350, ExpenseType.PhoneTonya, Person.Tonya),
+            new Expense(850, ExpenseType.Internet, Person.Nikita),
+            new Expense(200, ExpenseType.OnlineMusic, Person.Nikita),
+            new Expense(4000, ExpenseType.Dance, Person.Tonya)
+        };
+
         [Fact]
         public void Заполнение_первой_ревизии()
         {
@@ -21,17 +46,7 @@ namespace Kit.Ledger.Tests
                     150_000,
                     12_000
                 },
-                Expenses = new List<Expense>
-                {
-                    new Expense(23021, ExpenseType.Mortgage, Person.Nikita),
-                    new Expense(5000, ExpenseType.HousingServices, Person.Tonya),
-                    new Expense(9000, ExpenseType.VKA, Person.Nikita),
-                    new Expense(350, ExpenseType.PhoneNikita, Person.Nikita),
-                    new Expense(350, ExpenseType.PhoneTonya, Person.Tonya),
-                    new Expense(850, ExpenseType.Internet, Person.Nikita),
-                    new Expense(200, ExpenseType.OnlineMusic, Person.Nikita),
-                    new Expense(4000, ExpenseType.Dance, Person.Tonya)
-                }
+                Expenses = JuneFixedExpenses()
             };
 
             decimal sberbankTransferAmount = Calculator.FirstRevisionSberbankTransferAmount(firstRevision);
@@ -51,18 +66,7 @@ namespace Kit.Ledger.Tests
                     PocketMoneyBalance = 58092,
                     UntouchableMoneyBalance = 16450,
                     Incomes = new List<decimal> { 162000},
-                    Expenses = new List<Expense>
-                    {
-                        new Expense(23021, ExpenseType.Mortgage, Person.Nikita),
-                        new Expense(4217, ExpenseType.HousingServices, Person.Tonya),
-                        new Expense(23350, ExpenseType.Parking, Person.Nikita),
-                        new Expense(9000, ExpenseType.VKA, Person.Nikita),
-                        new Expense(350, ExpenseType.PhoneNikita, Person.Nikita),
-                        new Expense(350, ExpenseType.PhoneTonya, Person.Tonya),
-                        new Expense(550, ExpenseType.Internet, Person.Nikita),
-                        new Expense(200, ExpenseType.OnlineMusic, Person.Nikita),
-                        new Expense(4000, ExpenseType.Dance, Person.Tonya)
-                    }
+                    Expenses = JuneFixedExpenses()
                 },
                 SecondRevision = new Revision
                 {
@@ -70,18 +74,7 @@ namespace Kit.Ledger.Tests
                     PocketMoneyBalance = 22057,
                     UntouchableMoneyBalance = 16450,
                     Incomes = new List<decimal> { 2500},
-                    Expenses = new List<Expense>
-                    {
-                        new Expense(8635, ExpenseType.Food),
-                        new Expense(3679, ExpenseType.Samokat, Person.Nikita),
-                        new Expense(4000, ExpenseType.Psychologist, Person.Tonya),
-                        new Expense(6000, ExpenseType.Dentist, Person.Nikita),
-                        new Expense(400, ExpenseType.TransportSocial, Person.Nikita),
-                        new Expense(709, ExpenseType.TransportTaxi, Person.Nikita),
-                        new Expense(2287, ExpenseType.FoodOnTheRun),
-                        new Expense(7106, ExpenseType.OZON, Person.Nikita),
-                        new Expense(6887, ExpenseType.MihailikKitchen, Person.Nikita)
-                    }
+                    Expenses = JuneDynamicExpenses()
                 }
             };
             Revision firstRevision = new Revision

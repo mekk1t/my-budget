@@ -2,27 +2,12 @@
 {
     public static class Calculator
     {
-        private const decimal PERCENTAGE = 0.1m;
         private static readonly IReadOnlyList<ExpenseType> SBERBANK_EXPENSE_TYPES = new List<ExpenseType>
         {
             ExpenseType.Mortgage,
             ExpenseType.Parking,
             ExpenseType.VKA
         };
-
-        public static decimal UntouchableMoneyDeposit(Revision revision)
-        {
-            return revision.Incomes.Sum() * PERCENTAGE;
-        }
-
-        public static decimal UntouchableMoneyBalanceAtTheStartOfTheMonth(Budget previousMonthBudget, Revision firstRevision)
-        {
-            return
-                previousMonthBudget.FirstRevision.UntouchableMoneyBalance -
-                previousMonthBudget.SecondRevision.UntouchableMoneyBalance +
-                firstRevision.UntouchableMoneyBalance +
-                UntouchableMoneyDeposit(firstRevision);
-        }
 
         public static decimal PocketMoneyBalanceAtTheStartOfTheMonth(Budget previousMonthBudget)
         {
