@@ -33,6 +33,36 @@
         /// Баланс в конце месяца.
         /// </summary>
         public decimal FinalBalance { get; }
+        /// <summary>
+        /// Депозит на счёт "НЗ".
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
+        public decimal NzDeposit
+        {
+            get
+            {
+                if (Account.Type != AccountType.Salary)
+                    throw new InvalidOperationException("На счёт НЗ деньги откладываются с зарплатного счёта");
+
+                return Incomes.Sum(x => x * Constants.NZ_PERCENTAGE);
+            }
+        }
+        /// <summary>
+        /// Депозит на счёт "Карманные расходы".
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
+        public decimal PocketDeposit
+        {
+            get
+            {
+                if (Account.Type != AccountType.Salary)
+                    throw new InvalidOperationException("На счёт КР деньги откладываются с зарплатного счёта");
+
+                decimal availableIncome = Incomes.Sum() - NzDeposit;
+
+                return availableIncome - Expenses.Sum(x => x.Amount);
+            }
+        }
 
         /// <summary>
         /// Создает отчёт за месяц.
