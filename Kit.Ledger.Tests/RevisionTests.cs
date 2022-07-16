@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
+using Kit.Ledger.Domain;
 using Kit.Ledger.Domain.Enums;
-using Kit.Ledger.Domain.New;
 using System;
 using System.Collections.Generic;
 using System.Linq;
