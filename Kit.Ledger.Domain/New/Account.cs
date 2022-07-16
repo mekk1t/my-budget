@@ -12,9 +12,9 @@ namespace Kit.Ledger.Domain.New
         /// </summary>
         public Bank Bank { get; }
         /// <summary>
-        /// Название счёта.
+        /// Тип счёта.
         /// </summary>
-        public string Name { get; }
+        public AccountType Type { get; }
         /// <summary>
         /// Владелец счёта.
         /// </summary>
@@ -24,12 +24,12 @@ namespace Kit.Ledger.Domain.New
         /// Создает объект счёта в банке.
         /// </summary>
         /// <param name="bank">Банк, в котором открыт счёт.</param>
-        /// <param name="name">Название счёта.</param>
+        /// <param name="name">Тип счёта.</param>
         /// <param name="person">Владелец счёта.</param>
-        public Account(Bank bank, string name, Person person)
+        public Account(Bank bank, AccountType type, Person person)
         {
             Bank = bank;
-            Name = name;
+            Type = type;
             Person = person;
         }
     }

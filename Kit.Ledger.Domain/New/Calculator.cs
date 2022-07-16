@@ -2,6 +2,15 @@
 {
     public static class Calculator
     {
+        public static decimal CalculateNzDeposit(AccountReport salaryAccountReport, decimal percentage)
+        {
+            if (salaryAccountReport.Account.Type != AccountType.Salary)
+                throw new InvalidOperationException("На счёт НЗ деньги откладываются с зарплатного счёта");
+
+            return salaryAccountReport.Incomes.Sum(x => x * percentage);
+        }
+
+
         private static readonly IReadOnlyList<ExpenseType> SBERBANK_EXPENSE_TYPES = new List<ExpenseType>
         {
             ExpenseType.Mortgage,
