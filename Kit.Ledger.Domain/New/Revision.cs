@@ -2,8 +2,6 @@
 {
     public class Revision
     {
-        private const decimal PERCENTAGE = 0.1m;
-
         public DateTime CreatedAt { get; }
         public IReadOnlyList<decimal> Incomes { get; }
         public IReadOnlyList<Expense> Expenses { get; }
@@ -18,6 +16,6 @@
             PocketMoneyBalance = pocketMoneyBalance;
         }
 
-        public decimal UntouchableMoneyDeposit() => Incomes.Sum() * PERCENTAGE;
+        public decimal UntouchableMoneyDeposit() => Incomes.Sum() * Constants.UNTOUCHABLE_MONEY_INCOME_PERCENTAGE;
     }
 }

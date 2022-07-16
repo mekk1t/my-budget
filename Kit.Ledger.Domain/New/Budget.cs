@@ -79,5 +79,27 @@
                 UntouchableMoneyAtTheStartOfTheMonth -
                 (UntouchableMoneyAtTheStartOfTheMonth - UntouchableMoneyAtTheEndOfTheMonth);
         }
+
+        /// <summary>
+        /// Рассчитывает, сколько можно отложить на счёт "Карманные расходы" в конце месяца.
+        /// </summary>
+        /// <returns>
+        /// Размер денежных средств, которые можно перевести на карту Сбербанка.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">Не заполнена вторая итерация бюджета.</exception>
+        public decimal PocketMoneyDeposit()
+        {
+            if (SecondRevision == null)
+                throw new InvalidOperationException("Не заполнена вторая итерация бюджета");
+
+            return
+                (
+                    (FirstRevision.Incomes.Sum() + SecondRevision.Incomes.Sum()) *
+                    (1 - Constants.UNTOUCHABLE_MONEY_INCOME_PERCENTAGE)
+                ) -
+                (
+                    FirstRevision.Expenses.Select(e => e.Amount).Sum() + SecondRevision.Expenses.Select(e => e.Amount).Sum()
+                );
+        }
     }
 }

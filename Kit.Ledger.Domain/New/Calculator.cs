@@ -19,6 +19,7 @@
         /// <exception cref="ArgumentException"></exception>
         public static decimal GetUntouchableMoneyBalance(Budget previousMonthBudget, Revision revision)
         {
+            // TODO: Не хватает корректировки за счёт подгонов.
             decimal? currentBalance = previousMonthBudget.GetUntouchableMoneyBalance();
             if (currentBalance == null)
                 throw new ArgumentException("В бюджете не заполнена вторая итерация");
@@ -38,23 +39,6 @@
             return firstRevision.Expenses
                 .Where(e => SBERBANK_EXPENSE_TYPES.Contains(e.SpentOn))
                 .Sum(e => e.Amount);
-        }
-
-        /// <summary>
-        /// Сколько денег отложить на счёт "Карманные расходы".
-        /// </summary>
-        /// <param name="budget"></param>
-        /// <returns></returns>
-        public static decimal PocketMoneyDeposit(Budget budget)
-        {
-            return
-                (
-                    (budget.FirstRevision.Incomes.Sum() + budget.SecondRevision.Incomes.Sum()) *
-                    (1 - PERCENTAGE)
-                ) -
-                (
-                    budget.FirstRevision.Expenses.Select(e => e.Amount).Sum() + budget.SecondRevision.Expenses.Select(e => e.Amount).Sum()
-                );
         }
     }
 }
