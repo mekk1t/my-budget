@@ -1,4 +1,4 @@
-﻿namespace Kit.Ledger.Domain.New
+﻿namespace Kit.Ledger.Domain
 {
     /// <summary>
     /// Месячный бюджет.
@@ -93,10 +93,10 @@
                 throw new InvalidOperationException("Не заполнена вторая итерация бюджета");
 
             return
-                (
+
                     (FirstRevision.Incomes.Sum() + SecondRevision.Incomes.Sum()) *
                     (1 - Constants.UNTOUCHABLE_MONEY_INCOME_PERCENTAGE)
-                ) -
+                 -
                 (
                     FirstRevision.Expenses.Select(e => e.Amount).Sum() + SecondRevision.Expenses.Select(e => e.Amount).Sum()
                 );

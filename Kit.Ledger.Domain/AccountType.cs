@@ -1,4 +1,4 @@
-﻿namespace Kit.Ledger.Domain.New
+﻿namespace Kit.Ledger.Domain
 {
     /// <summary>
     /// Тип счёта в банке.

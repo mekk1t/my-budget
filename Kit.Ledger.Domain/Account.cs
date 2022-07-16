@@ -1,6 +1,6 @@
 ﻿using Kit.Ledger.Domain.Enums;
 
-namespace Kit.Ledger.Domain.New
+namespace Kit.Ledger.Domain
 {
     /// <summary>
     /// Счёт в банке.

@@ -1,4 +1,4 @@
-﻿namespace Kit.Ledger.Domain.New
+﻿namespace Kit.Ledger.Domain
 {
     public class Revision
     {
