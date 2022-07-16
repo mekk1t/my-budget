@@ -3,13 +3,13 @@
     public class Revision
     {
         public AccountType AccountType { get; }
-        public DateTime CreatedAt { get; }
         public IReadOnlyList<decimal> Incomes { get; }
         public IReadOnlyList<Expense> Expenses { get; }
+        public Month Month { get; }
 
-        public Revision(List<decimal> incomes, List<Expense> expenses, AccountType accountType)
+        public Revision(List<decimal> incomes, List<Expense> expenses, AccountType accountType, Month month)
         {
-            CreatedAt = DateTime.UtcNow;
+            Month = month;
             Incomes = incomes;
             Expenses = expenses;
             AccountType = accountType;
