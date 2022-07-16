@@ -1,4 +1,6 @@
-﻿namespace Kit.Ledger.Domain
+﻿using Kit.Ledger.Domain.Enums;
+
+namespace Kit.Ledger.Domain
 {
     public class Expense
     {

@@ -10,44 +10,14 @@
             return salaryAccountReport.Incomes.Sum(x => x * percentage);
         }
 
-
-        private static readonly IReadOnlyList<ExpenseType> SBERBANK_EXPENSE_TYPES = new List<ExpenseType>
+        public static decimal CalculatePocketDeposit(AccountReport salaryAccountReport, decimal nzPercentage)
         {
-            ExpenseType.Mortgage,
-            ExpenseType.Parking,
-            ExpenseType.VKA
-        };
+            if (salaryAccountReport.Account.Type != AccountType.Salary)
+                throw new InvalidOperationException("На счёт КР деньги откладываются с зарплатного счёта");
 
-        /// <summary>
-        /// Получает баланс счёта "НЗ" на начало месяца.
-        /// </summary>
-        /// <param name="previousMonthBudget">Бюджет за предыдущий месяц.</param>
-        /// <returns>
-        /// Значение баланса на счету "НЗ", которое должно быть на начало месяца.
-        /// </returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static decimal GetUntouchableMoneyBalance(Budget previousMonthBudget, Revision revision)
-        {
-            // TODO: Не хватает корректировки за счёт подгонов.
-            decimal? currentBalance = previousMonthBudget.GetUntouchableMoneyBalance();
-            if (currentBalance == null)
-                throw new ArgumentException("В бюджете не заполнена вторая итерация");
+            decimal income = salaryAccountReport.Incomes.Sum() - CalculateNzDeposit(salaryAccountReport, nzPercentage);
 
-            return currentBalance.Value + revision.UntouchableMoneyDeposit();
-        }
-
-        public static decimal PocketMoneyBalanceAtTheStartOfTheMonth(Budget previousMonthBudget)
-        {
-            return
-                previousMonthBudget.FirstRevision.PocketMoneyBalance -
-                previousMonthBudget.SecondRevision.PocketMoneyBalance;
-        }
-
-        public static decimal FirstRevisionSberbankTransferAmount(Revision firstRevision)
-        {
-            return firstRevision.Expenses
-                .Where(e => SBERBANK_EXPENSE_TYPES.Contains(e.SpentOn))
-                .Sum(e => e.Amount);
+            return income - salaryAccountReport.Expenses.Sum(x => x.Amount);
         }
     }
 }
