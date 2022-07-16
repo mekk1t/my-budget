@@ -16,7 +16,16 @@
         /// <summary>
         /// Объем денежных средств, которые нужно перевести на карту Сбербанка.
         /// </summary>
-        public decimal SberbankTransferAmount => Expenses.Where(e => SBERBANK_EXPENSE_TYPES.Contains(e.SpentOn)).Sum(e => e.Amount);
+        public decimal SberbankTransferAmount
+        {
+            get
+            {
+                if (AccountType == AccountType.Salary)
+                    return Expenses.Where(e => SBERBANK_EXPENSE_TYPES.Contains(e.SpentOn)).Sum(e => e.Amount);
+
+                return 0;
+            }
+        }
 
         public Revision(List<decimal> incomes, List<Expense> expenses, AccountType accountType, Month month)
         {
