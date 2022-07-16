@@ -8,4 +8,8 @@
     <RootNamespace>Kit.Ledger.Domain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="New\" />
+  </ItemGroup>
+
 </Project>
