@@ -2,20 +2,17 @@
 {
     public class Revision
     {
+        public AccountType AccountType { get; }
         public DateTime CreatedAt { get; }
         public IReadOnlyList<decimal> Incomes { get; }
         public IReadOnlyList<Expense> Expenses { get; }
 
-        public decimal PocketMoneyBalance { get; }
-
-        public Revision(List<decimal> incomes, List<Expense> expenses, decimal pocketMoneyBalance)
+        public Revision(List<decimal> incomes, List<Expense> expenses, AccountType accountType)
         {
             CreatedAt = DateTime.UtcNow;
             Incomes = incomes;
             Expenses = expenses;
-            PocketMoneyBalance = pocketMoneyBalance;
+            AccountType = accountType;
         }
-
-        public decimal UntouchableMoneyDeposit() => Incomes.Sum() * Constants.UNTOUCHABLE_MONEY_INCOME_PERCENTAGE;
     }
 }
