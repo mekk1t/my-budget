@@ -36,13 +36,12 @@
         /// <summary>
         /// Депозит на счёт "НЗ".
         /// </summary>
-        /// <exception cref="InvalidOperationException"></exception>
         public decimal NzDeposit
         {
             get
             {
                 if (Account.Type != AccountType.Salary)
-                    throw new InvalidOperationException("На счёт НЗ деньги откладываются с зарплатного счёта");
+                    return 0;
 
                 return Incomes.Sum(x => x * Constants.NZ_PERCENTAGE);
             }
@@ -50,13 +49,12 @@
         /// <summary>
         /// Депозит на счёт "Карманные расходы".
         /// </summary>
-        /// <exception cref="InvalidOperationException"></exception>
         public decimal PocketDeposit
         {
             get
             {
                 if (Account.Type != AccountType.Salary)
-                    throw new InvalidOperationException("На счёт КР деньги откладываются с зарплатного счёта");
+                    return 0;
 
                 decimal availableIncome = Incomes.Sum() - NzDeposit;
 
