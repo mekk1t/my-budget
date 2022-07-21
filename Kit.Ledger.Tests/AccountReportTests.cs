@@ -20,7 +20,7 @@ namespace Kit.Ledger.Tests
                     {
                         new Expense(104741 + 12000, ExpenseType.Food)
                     },
-                    new List<decimal> { 164_500 });
+                    new List<Income> { new Income(164_500, IncomeType.Salary, Person.Nikita) });
         }
 
         [Fact]

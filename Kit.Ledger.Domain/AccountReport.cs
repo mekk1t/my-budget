@@ -24,7 +24,7 @@
         /// <summary>
         /// Список доходов.
         /// </summary>
-        public List<decimal> Incomes { get; }
+        public List<Income> Incomes { get; }
         /// <summary>
         /// Список трат.
         /// </summary>
@@ -43,7 +43,7 @@
                 if (Account.Type != AccountType.Salary)
                     return 0;
 
-                return Incomes.Sum(x => x * Constants.NZ_PERCENTAGE);
+                return Incomes.Sum(x => x.Amount * Constants.NZ_PERCENTAGE);
             }
         }
         /// <summary>
@@ -56,7 +56,7 @@
                 if (Account.Type != AccountType.Salary)
                     return 0;
 
-                decimal availableIncome = Incomes.Sum() - NzDeposit;
+                decimal availableIncome = Incomes.Sum(i => i.Amount) - NzDeposit;
 
                 return availableIncome - Expenses.Sum(x => x.Amount);
             }
@@ -77,7 +77,7 @@
             decimal initialBalance,
             decimal finalBalance,
             List<Expense> expenses,
-            List<decimal> incomes)
+            List<Income> incomes)
         {
             Account = account;
             Month = month;

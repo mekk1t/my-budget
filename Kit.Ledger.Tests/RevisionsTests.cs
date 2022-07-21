@@ -13,7 +13,7 @@ namespace Kit.Ledger.Tests
         {
             Revision sut =
                 new(
-                    new List<decimal> { 162_000 },
+                    new List<Income> { new Income(162_000, IncomeType.Salary, Person.Nikita) },
                     new List<Expense>
                     {
                         new Expense(23021, ExpenseType.Mortgage, Person.Nikita),
@@ -37,7 +37,7 @@ namespace Kit.Ledger.Tests
         {
             Revision sut =
                 new(
-                    new List<decimal> { 162_000 },
+                    new List<Income> { new Income(162_000, IncomeType.Salary, Person.Nikita) },
                     new List<Expense>
                     {
                         new Expense(23021, ExpenseType.Mortgage, Person.Nikita),
@@ -58,7 +58,7 @@ namespace Kit.Ledger.Tests
         {
             Revision sut =
                 new(
-                    new List<decimal> { 1 },
+                    new List<Income> { new Income(1, IncomeType.Salary, Person.Nikita) },
                     new List<Expense> { new Expense(5000, ExpenseType.Dentist, Person.Nikita) },
                     AccountType.Salary,
                     Month.August);

@@ -10,7 +10,7 @@
         };
 
         public AccountType AccountType { get; }
-        public IReadOnlyList<decimal> Incomes { get; }
+        public IReadOnlyList<Income> Incomes { get; }
         public IReadOnlyList<Expense> Expenses { get; }
         public Month Month { get; }
         /// <summary>
@@ -27,7 +27,7 @@
             }
         }
 
-        public Revision(List<decimal> incomes, List<Expense> expenses, AccountType accountType, Month month)
+        public Revision(List<Income> incomes, List<Expense> expenses, AccountType accountType, Month month)
         {
             Month = month;
             Incomes = incomes;
